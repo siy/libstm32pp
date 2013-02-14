@@ -45,9 +45,50 @@ namespace fsmc {
     private:
       Functions();
   };
+
+  namespace norpsram {
+
+  template<Device N>
+  class Functions {
+    public:
+      static inline void configure(
+              fsmc::bcr::mbken::States,
+              fsmc::bcr::muxen::States,
+              fsmc::bcr::mtyp::States,
+              fsmc::bcr::mwid::States,
+              fsmc::bcr::faccen::States,
+              fsmc::bcr::bursten::States,
+              fsmc::bcr::waitpol::States,
+              fsmc::bcr::wrapmod::States,
+              fsmc::bcr::waitcfg::States,
+              fsmc::bcr::wren::States,
+              fsmc::bcr::waiten::States,
+              fsmc::bcr::asyncwait::States,
+              fsmc::bcr::cburstrw::States,
+              fsmc::btr::addset::States,
+              fsmc::btr::addhld::States,
+              fsmc::btr::datast::States,
+              fsmc::btr::busturn::States,
+              fsmc::btr::clkdiv::States,
+              fsmc::btr::datlat::States,
+              fsmc::btr::accmod::States
+              );
+      static inline void readWord(u32* value, u32 address);
+      static inline void readHalfWord(u16* value, u32 address);
+      static inline void readByte(u8* value, u32 address);
+      static inline const u32* dataAddress();
+
+    private:
+      Functions();
+  }; // class Functions
+  } // namespace norpsram
 }  // namespace fsmc
 
 // High-level access to the peripheral
 typedef fsmc::Functions FSMC;
+typedef fsmc::norpsram::Functions<fsmc::norpsram::NORPSRAM1> NORPSRAM1;
+typedef fsmc::norpsram::Functions<fsmc::norpsram::NORPSRAM2> NORPSRAM2;
+typedef fsmc::norpsram::Functions<fsmc::norpsram::NORPSRAM3> NORPSRAM3;
+typedef fsmc::norpsram::Functions<fsmc::norpsram::NORPSRAM4> NORPSRAM4;
 
 #include "../../bits/fsmc.tcc"
