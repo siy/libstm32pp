@@ -367,11 +367,53 @@ namespace adc {
         ccr::tsvrefe::POSITION
     >()) = 0;
   }
+  
+  void CommonFunctions::enableBatteryVoltageChannel()
+  {
+    *(u32 volatile*) (bitband::peripheral<
+        ADC + ccr::OFFSET,
+        ccr::vbate::POSITION
+    >()) = 1;
+  }
+  
+  void CommonFunctions::disableBatteryVoltageChannel()
+  {
+    *(u32 volatile*) (bitband::peripheral<
+        ADC + ccr::OFFSET,
+        ccr::vbate::POSITION
+    >()) = 0;
+  }
+  
 
   void CommonFunctions::setPrescaler(ccr::adcpre::States ADCPRE)
   {
     ADC_COMMON_REGS->CCR &= ccr::adcpre::MASK;
     ADC_COMMON_REGS->CCR |= ADCPRE;
   }
+  
+  void CommonFunctions::setDMAMode(ccr::dma::States DMA)
+  {
+    ADC_COMMON_REGS->CCR &= ccr::dma::MASK;
+    ADC_COMMON_REGS->CCR |= DMA;
+  }
+  
+  void CommonFunctions::setDMADisableSelection(ccr::dds::States DDS)
+  {
+    ADC_COMMON_REGS->CCR &= ccr::dds::MASK;
+    ADC_COMMON_REGS->CCR |= DDS;
+  }
+  
+  void CommonFunctions::setSamplingDelay(ccr::delay::States DELAY)
+  {
+    ADC_COMMON_REGS->CCR &= ccr::delay::MASK;
+    ADC_COMMON_REGS->CCR |= DELAY;
+  }
+  
+  void CommonFunctions::setMultiADCMode(ccr::multi::States MULTI)
+  {
+    ADC_COMMON_REGS->CCR &= ccr::multi::MASK;
+    ADC_COMMON_REGS->CCR |= MULTI;
+  }
+  
 #endif
 }  // namespace adc
