@@ -86,10 +86,10 @@ namespace adc {
 
     /**
      * Bit 0 AWD: Analog watchdog flag
-	 * This bit is set by hardware when the converted voltage crosses the values programmed in
-	 * the ADC_LTR and ADC_HTR registers. It is cleared by software.
-	 * 0: No analog watchdog event occurred
-	 * 1: Analog watchdog event occurred
+     * This bit is set by hardware when the converted voltage crosses the values programmed in
+     * the ADC_LTR and ADC_HTR registers. It is cleared by software.
+     * 0: No analog watchdog event occurred
+     * 1: Analog watchdog event occurred
      **/
     namespace awd {
       enum {
