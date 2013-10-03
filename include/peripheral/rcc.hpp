@@ -1,6 +1,7 @@
 /*******************************************************************************
  *
  * Copyright (C) 2012 Jorge Aparicio <jorge.aparicio.r@gmail.com>
+ * Minor mods (C) 2013 Rommel Marcelo <jaqueza@gmail.com>
  *
  * This file is part of libstm32pp.
  *
@@ -260,6 +261,9 @@ namespace rcc {
       static inline void configureClockOutput();
 
       static inline void selectI2sSource(rcc::cfgr::i2ssrc::States);
+
+      static inline void resetBackupDomain();
+      static inline void clearBackupDomain();
 
 #endif // STM32F1XX
       private:

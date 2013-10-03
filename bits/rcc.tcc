@@ -1,6 +1,7 @@
 /*******************************************************************************
  *
  * Copyright (C) 2012 Jorge Aparicio <jorge.aparicio.r@gmail.com>
+ * Minor mods (C) 2013 Rommel Marcelo <jaqueza@gmail.com> 
  *
  * This file is part of libstm32pp.
  *
@@ -25,6 +26,26 @@
 #include "cfunctions.hpp"
 
 namespace rcc {
+  /**
+   * @brief Deactivate backup domain reset
+   */
+  void Functions::clearBackupDomain()
+  {
+	  *(u32 volatile*) (bitband::peripheral<
+			ADDRESS + bdcr::OFFSET,
+	        bdcr::bdrst::POSITION
+	    >()) = 0;
+  }
+  /**
+   * @brief Reset backup domain
+   */
+  void Functions::resetBackupDomain()
+  {
+	  *(u32 volatile*) (bitband::peripheral<
+			ADDRESS + bdcr::OFFSET,
+	        bdcr::bdrst::POSITION
+	    >()) = 1;
+  }
 
   /**
    * @brief Enables the external oscillator circuitry.
