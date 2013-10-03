@@ -1,6 +1,7 @@
 /*******************************************************************************
  *
  * Copyright (C) 2012 Jorge Aparicio <jorge.aparicio.r@gmail.com>
+ * Minor mod (C) 2013 Rommel Marcelo <jaqueza@gmail.com>
  *
  * This file is part of libstm32pp.
  *
@@ -60,7 +61,8 @@ namespace usart {
 
   namespace sr {
     enum {
-      OFFSET = 0x00
+      OFFSET = 0x00,
+      MASK = 0x3FF
     };
 
     namespace pe {
