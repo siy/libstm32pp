@@ -1,6 +1,7 @@
 /*******************************************************************************
  *
  * Copyright (C) 2012 Jorge Aparicio <jorge.aparicio.r@gmail.com>
+ * Copyright (C) 2013 Rommel Marcelo <jaqueza@gmail.com>
  *
  * This file is part of libstm32pp.
  *
@@ -39,13 +40,38 @@
 namespace stk {
   class Functions {
     public:
-      // TODO STK functions declaration
+	  enum {
+		  TICKERCLOCK = clk::SYSTICK,
+		  CORECLOCK = clk::AHB
+	  };
+      // T ODO STK functions declaration
+	  static inline void enableCounter();
+	  static inline void disableCounter();
+	  static inline void enableInterrupt();
+	  static inline void disableInterrupt();
+	  static inline void selectClockAHB();
+	  static inline void selectClockDiv8();
+	  static inline bool getClockSource();
+	  static inline bool getCountFlag();
+	  static inline void setTicks(u32 const);
+	  static inline u32 getCurrentValue();
+	  static inline void clearCurrentValue();
+	  static inline void set10msReload(u32 const);
+	  static inline bool isTenmsExact();
+	  static inline bool isRefClockProvided();
+//	  static inline void set1MsTicker();
+
+	  static inline void configurePeriodicInterrupt(u32 const);
+
+	  static inline u32 getAutoReloadValue();
+	  static inline void reloadSysTick(u32 const);
     private:
       Functions();
   };
 }  // namespace stk
 
 // High-level access to the peripheral
-// TODO STK high-level access
+// T ODO STK high-level access
+typedef stk::Functions STK;
 
 #include "../../bits/stk.tcc"
