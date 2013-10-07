@@ -71,9 +71,9 @@ void initializeSystemTimer()
 }
 
 
-void delay_1_second(u32 sec)
+void delay(u32 time)
 {
-	while (sectick < sec);
+	while (sectick < time);
 }
 
 
@@ -83,14 +83,14 @@ void loop()
   LD4::setLow();
   LD5::setLow();
 
-  delay_1_second(2);
+  delay(2);
   sectick = 0;
 
   LD3::setHigh();
   LD4::setHigh();
   LD5::setHigh();
 
-  delay_1_second(2);
+  delay(2);
   sectick = 0;
 }
 
