@@ -148,7 +148,7 @@ namespace usart {
   }
 
   /**
-   * @brief Enable Tx interrupt.
+   * @brief Enable Transmit interrupt.
    */
   template<Address A>
   void Asynchronous<A>::enableTxIrq()
@@ -158,7 +158,7 @@ namespace usart {
 	          cr1::txeie::POSITION>()) = 1;
   }
   /**
-   * @brief Disable Tx interrupt.
+   * @brief Disable Transmit interrupt.
    */
   template<Address A>
   void Asynchronous<A>::disableTxIrq()
@@ -168,7 +168,7 @@ namespace usart {
 	          cr1::txeie::POSITION>()) = 0;
   }
   /**
-   * @brief Enable Tx interrupt.
+   * @brief Enable Receive interrupt.
    */
   template<Address A>
   void Asynchronous<A>::enableRxIrq()
@@ -178,7 +178,7 @@ namespace usart {
 	          cr1::rxneie::POSITION>()) = 1;
   }
   /**
-   * @brief Disable Tx interrupt.
+   * @brief Disable Receive interrupt.
    */
   template<Address A>
   void Asynchronous<A>::disableRxIrq()
@@ -220,8 +220,8 @@ namespace usart {
 	          sr::lbd::POSITION>()) = 0;
   }
   /**
-   * @brief Configures the USART for asynchronous operation.
-   * @note  Overrides the old configuration.
+   * @brief Clear all errors
+   * @note  Data is lost when this is called.
    */
   template<Address A>
   void Asynchronous<A>::clearErrors()
@@ -270,7 +270,7 @@ namespace usart {
   }
 
   /**
-   * @brief Unmasks all the timer interrupts.
+   * @brief Unmasks all the usart interrupts.
    */
   template<Address A>
   void Asynchronous<A>::unmaskInterrupts()
@@ -312,7 +312,7 @@ namespace usart {
     }
   }
   /**
-   * @brief Unmasks all the timer interrupts.
+   * @brief Unmasks all the usart interrupts.
    */
   template<Address A>
   void Asynchronous<A>::maskInterrupts()
