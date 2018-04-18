@@ -19,7 +19,7 @@
  *
  ******************************************************************************/
 
-ABOUT
+## ABOUT
 =====
 
 libstm32pp is a template peripheral library for the STM32F1/STM32F2/STM32F4
@@ -31,7 +31,7 @@ statics assertions, templates and enumerators.
 All these features provide a memory efficient implementation, compile-time
 error-checking and strong typing.
 
-INSTALLATION AND USE
+## INSTALLATION AND USE
 ====================
 
 There is no installation, this is a header file only library.
@@ -68,7 +68,7 @@ you should check the bareCortexM project:
 It's a framework based on the Eclipse IDE and the GCC toolchain, for bare metal
 development of Cortex™ M Series processors.
 
-LICENSE
+## LICENSE
 =======
 
 This project is licensed under the:
@@ -77,7 +77,7 @@ GNU Lesser General Public License (LGPL) version 3.
 
 See COPYING.GPL3.txt and COPYING.LGPL3.txt for more details. 
 
-DISCLAIMER
+## DISCLAIMER
 ==========
 
 Cortex™ is a trademark of ARM Limited. ST, STM32 are trademarks of 
