@@ -122,7 +122,13 @@ namespace adc {
     public:
       static inline void enableTemperatureSensor();
       static inline void disableTemperatureSensor();
+      static inline void enableBatteryVoltageChannel();
+      static inline void disableBatteryVoltageChannel();
       static inline void setPrescaler(ccr::adcpre::States ADCPRE);
+      static inline void setDMAMode(ccr::dma::States DMA);
+      static inline void setDMADisableSelection(ccr::dds::States DDS);
+      static inline void setSamplingDelay(ccr::delay::States DELAY);
+      static inline void setMultiADCMode(ccr::multi::States MULTI);
 
     private:
       CommonFunctions();
