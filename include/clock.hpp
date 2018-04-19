@@ -521,8 +521,11 @@ namespace clk {
 
   /* Select the flash memory access latency ***********************************/
   flash::acr::latency::States const __LATENCY =
-//		  flash::acr::latency::ZERO_WAIT_STATE;
+#ifdef STM32F1XX
+		  flash::acr::latency::ZERO_WAIT_STATE;
+#else
 		  flash::acr::latency::FIVE_WAIT_STATES;
+#endif
   /*********************************** Select the flash memory access latency */
   /* IMPORTANT: USING A LOW LATENCY AT HIGH CORE'S FREQUENCY MIGHT RESULT IN
    *            FLASH MEMORY ACCESS ERRORS AT RUN TIME. ***********************/

@@ -26,6 +26,7 @@
 #include "cfunctions.hpp"
 
 namespace rcc {
+#ifndef STM32F1XX
   /**
    * @brief Deactivate backup domain reset
    */
@@ -46,7 +47,7 @@ namespace rcc {
 	        bdcr::bdrst::POSITION
 	    >()) = 1;
   }
-
+#endif
   /**
    * @brief Enables the external oscillator circuitry.
    */
