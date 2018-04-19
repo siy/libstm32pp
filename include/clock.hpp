@@ -521,6 +521,7 @@ namespace clk {
 
   /* Select the flash memory access latency ***********************************/
   flash::acr::latency::States const __LATENCY =
+//TODO: fix wait states for particular processors
 #ifdef STM32F1XX
 		  flash::acr::latency::ZERO_WAIT_STATE;
 #else
