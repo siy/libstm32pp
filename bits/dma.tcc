@@ -36,7 +36,7 @@ namespace dma {
     {
       switch (D) {
         case DMA1:
-          #ifndef STM32F1XX
+#ifndef STM32F1XX
           RCC::enableClocks<rcc::ahb1enr::DMA1>();
 #else // STM32F1XX
           RCC::enableClocks<rcc::ahbenr::DMA1>();
@@ -61,14 +61,14 @@ namespace dma {
     {
       switch (D) {
         case DMA1:
-          #ifndef STM32F1XX
+#ifndef STM32F1XX
           RCC::disableClocks<rcc::ahb1enr::DMA1>();
 #else // STM32F1XX
           RCC::disableClocks<rcc::ahbenr::DMA1>();
 #endif // STM32F1XX
           break;
         case DMA2:
-          #ifndef STM32F1XX
+#ifndef STM32F1XX
           RCC::disableClocks<rcc::ahb1enr::DMA2>();
 #else // STM32F1XX
           RCC::disableClocks<rcc::ahbenr::DMA2>();
