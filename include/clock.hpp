@@ -523,7 +523,7 @@ namespace clk {
   flash::acr::latency::States const __LATENCY =
 //TODO: fix wait states for particular processors
 #ifdef STM32F1XX
-		  flash::acr::latency::ZERO_WAIT_STATE;
+		  flash::acr::latency::TWO_WAIT_STATES;
 #else
 		  flash::acr::latency::FIVE_WAIT_STATES;
 #endif
