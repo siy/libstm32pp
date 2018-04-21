@@ -54,7 +54,7 @@ extern "C" {
    */
   void _exit(int status)
   {
-    _write(1, "exit", 4);
+    _write(1, const_cast<char*>("exit"), 4);
     while (true) {
     }
   }
@@ -123,15 +123,15 @@ extern "C" {
    */
   caddr_t _sbrk(int incr)
   {
-    extern char __bss_end__;
-    static char *heapEnd = &__bss_end__;
+    extern u32 __bss_end__;
+    static char *heapEnd = reinterpret_cast<char*> (&__bss_end__);
 
     char *previousHeapEnd = heapEnd;
 
     register caddr_t stackPointer asm ("sp");
 
     if (heapEnd + incr > stackPointer) {
-      _write(1, "Heap and stack collision\n", 25);
+      _write(1, const_cast<char*>("Heap and stack collision\n"), 25);
       _exit(0);
     }
 

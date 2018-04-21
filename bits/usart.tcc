@@ -304,11 +304,13 @@ namespace usart {
 		  nvic::irqn::UART5
 		  >();
 		  break;
+#ifndef STM32F1XX
       case USART6:
 		  NVIC::enableIrq<
 		  nvic::irqn::USART6
 		  >();
 		  break;
+#endif
     }
   }
   /**
@@ -346,11 +348,13 @@ namespace usart {
 		  nvic::irqn::UART5
 		  >();
 		  break;
+#ifndef STM32F1XX
       case USART6:
 		  NVIC::disableIrq<
 		  nvic::irqn::USART6
 		  >();
 		  break;
+#endif
     }
   }
 }  // namespace usart
