@@ -25,6 +25,10 @@
 
 #pragma once
 
+//#define USING_HSE_CRYSTAL
+#define USING_LSI
+//#define USING_PLL
+
 /* Enter your clock configuration below, ignore the grayed out areas **********/
 
 namespace clk {
@@ -36,7 +40,7 @@ namespace clk {
    ****************************************************************************/
 
   /* Are you using an external high speed crystal, resonator or oscillator? ***/
-#define USING_HSE_CRYSTAL
+//#define USING_HSE_CRYSTAL
   /******* Comment the macro above to answer no, otherwise your answer is yes */
 
 #ifndef USING_HSE_CRYSTAL
@@ -102,7 +106,7 @@ namespace clk {
 
 #endif // USING_LSE_CRYSTAL || USING_LSE_CLOCK
   /* Do you want to use the LSI? **********************************************/
-#define USING_LSI
+//#define USING_LSI
   /******* Comment the macro above to answer no, otherwise your answer is yes */
 
   /****************************************************************************
@@ -112,7 +116,7 @@ namespace clk {
    ****************************************************************************/
 
   /* Are you going to use the Real time clock module? *************************/
-#define USING_RTC
+//#define USING_RTC
   /******* Comment the macro above to answer no, otherwise your answer is yes */
 
 #ifdef USING_RTC
@@ -158,7 +162,7 @@ namespace clk {
    ****************************************************************************/
 
   /* Do you want to use the PLL? **********************************************/
-#define USING_PLL
+//#define USING_PLL
   /******* Comment the macro above to answer no, otherwise your answer is yes */
 
 #ifdef USING_PLL
@@ -345,7 +349,7 @@ namespace clk {
 #ifdef CONNECTIVITY_LINE
 
   /* Do you want to use the I2S PLL? ******************************************/
-#define USING_I2S_PLL
+//#define USING_I2S_PLL
   /******* Comment the macro above to answer no, otherwise your answer is yes */
 
 #ifdef USING_I2S_PLL
@@ -383,7 +387,7 @@ namespace clk {
 #endif // CONNECTIVITY_LINE
 #else // STM32F1XX
   /* Do you want to use the I2S PLL? ******************************************/
-#define USING_I2S_PLL
+//#define USING_I2S_PLL
   /******* Comment the macro above to answer no, otherwise your answer is yes */
 
 #ifdef USING_I2S_PLL

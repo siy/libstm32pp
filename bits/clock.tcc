@@ -820,6 +820,7 @@ void initialize()
 
   RCC::enableRtc();
 #endif // USING_RTC
+
   /* Enable PLLs ************************************************************/
 #ifdef USING_PLL
 #ifdef STM32F1XX
@@ -831,12 +832,14 @@ void initialize()
 
   while (!RCC::isPll2Stable()) {}
 #endif // !CONNECTIVITY_LINE
+
 #else // STM32F1XX
   RCC::enablePll();
 
   while (!RCC::isPllStable()) {}
 #endif // STM32F1XX
 #endif // USING_PLL
+
 #ifdef CONNETIVITY_LINE
 #ifdef USING_I2S_PLL
   RCC::enablePll3();
@@ -844,11 +847,12 @@ void initialize()
   while (!RCC::isPll3Stable()) {}
 #endif // USING_I2S_PLL
 #endif // CONNECTIVITY_LINE
+
   /* Select system clock ****************************************************/
   RCC::setSystemClockSource(__SW);
 
-  while (!RCC::isSystemClockSourceStable()) {
-  }
+//  while (!RCC::isSystemClockSourceStable()) {
+//  }
 #if defined USING_HSE_CLOCK || \
     defined USING_HSE_CRYSTAL
 } else {
