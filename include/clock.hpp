@@ -26,8 +26,8 @@
 #pragma once
 
 //#define USING_HSE_CRYSTAL
-#define USING_LSI
-//#define USING_PLL
+//#define USING_LSI
+#define USING_PLL
 
 /* Enter your clock configuration below, ignore the grayed out areas **********/
 
@@ -50,6 +50,42 @@ namespace clk {
   /******* Comment the macro above to answer no, otherwise your answer is yes */
 
 #endif // USING_HSE_CRYSTAL
+    /* Are you using an external low speed crystal, resonator or oscillator? ****/
+//#define USING_LSE_CRYSTAL
+    /******* Comment the macro above to answer no, otherwise your answer is yes */
+
+#ifndef USING_LSE_CRYSTAL
+
+    /* Are you using a low speed external clock? *******************************/
+//#define USING_LSE_CLOCK
+    /******* Comment the macro above to answer no, otherwise your answer is yes */
+
+#endif // USING_LSE_CRYSTAL
+    /* Do you want to use the LSI? **********************************************/
+//#define USING_LSI
+    /******* Comment the macro above to answer no, otherwise your answer is yes */
+
+    /****************************************************************************
+     *                                                                          *
+     *                       REAL TIME CLOCK CONFIGURATION                      *
+     *                                                                          *
+     ****************************************************************************/
+
+    /* Are you going to use the Real time clock module? *************************/
+//#define USING_RTC
+    /******* Comment the macro above to answer no, otherwise your answer is yes */
+
+    /****************************************************************************
+     *                                                                          *
+     *                             PLL CONFIGURATION                            *
+     *                                                                          *
+     ****************************************************************************/
+
+    /* Do you want to use the PLL? **********************************************/
+//#define USING_PLL
+    /******* Comment the macro above to answer no, otherwise your answer is yes */
+
+
 #if defined USING_HSE_CRYSTAL  || \
     defined USING_HSE_CLOCK
 
@@ -72,17 +108,7 @@ namespace clk {
   void hseFailureHandler(void);
 
 #endif // USING_HSE_CRYSTAL || USING_HSE_CLOCK
-  /* Are you using an external low speed crystal, resonator or oscillator? ****/
-//#define USING_LSE_CRYSTAL
-  /******* Comment the macro above to answer no, otherwise your answer is yes */
 
-#ifndef USING_LSE_CRYSTAL
-
-  /* Are you using a low speed external clock? *******************************/
-//#define USING_LSE_CLOCK
-  /******* Comment the macro above to answer no, otherwise your answer is yes */
-
-#endif // USING_LSE_CRYSTAL
 #if defined USING_LSE_CRYSTAL  || \
   defined USING_LSE_CLOCK
 
@@ -105,19 +131,6 @@ namespace clk {
   void lseFailureHandler(void);
 
 #endif // USING_LSE_CRYSTAL || USING_LSE_CLOCK
-  /* Do you want to use the LSI? **********************************************/
-//#define USING_LSI
-  /******* Comment the macro above to answer no, otherwise your answer is yes */
-
-  /****************************************************************************
-   *                                                                          *
-   *                       REAL TIME CLOCK CONFIGURATION                      *
-   *                                                                          *
-   ****************************************************************************/
-
-  /* Are you going to use the Real time clock module? *************************/
-//#define USING_RTC
-  /******* Comment the macro above to answer no, otherwise your answer is yes */
 
 #ifdef USING_RTC
 #ifdef STM32F1XX
@@ -132,8 +145,7 @@ namespace clk {
    * LSI---------+
    *
    * Define the prescaler parameters ******************************************/
-  rcc::bdcr::rtcsel::States const __RTCSEL = rcc::bdcr::rtcsel::
-  LSE_CLOCK_AS_RTC_SOURCE;
+  rcc::bdcr::rtcsel::States const __RTCSEL = rcc::bdcr::rtcsel::LSE_CLOCK_AS_RTC_SOURCE;
   /****************************************** Define the prescaler parameters */
 #else // STM32F1XX
   /*****************************************************************************
@@ -155,15 +167,6 @@ namespace clk {
   /****************************************** Define the prescaler parameters */
 #endif // STM32F1XX
 #endif // USING_RTC
-  /****************************************************************************
-   *                                                                          *
-   *                             PLL CONFIGURATION                            *
-   *                                                                          *
-   ****************************************************************************/
-
-  /* Do you want to use the PLL? **********************************************/
-//#define USING_PLL
-  /******* Comment the macro above to answer no, otherwise your answer is yes */
 
 #ifdef USING_PLL
 
@@ -178,7 +181,8 @@ namespace clk {
    *
    * Select the PLL source ****************************************************/
   rcc::cfgr::pllsrc::States const __PLLSRC = rcc::cfgr::pllsrc::
-  USE_PREDIV1_OUTPUT_AS_PLL_SOURCE;
+  USE_HSI_CLOCK_OVER_2_AS_PLL_SOURCE;
+  //USE_PREDIV1_OUTPUT_AS_PLL_SOURCE;
   /**************************************************** Select the PLL source */
 #ifndef CONNECTIVITY_LINE
 #ifdef VALUE_LINE
@@ -490,8 +494,7 @@ namespace clk {
    * (SYSTEM | HSI | HSE | PLL | XT1) ----> MCO
    *
    ****************************************************************************/
-  rcc::cfgr::mco::States const __MCO =
-  rcc::cfgr::mco::OUTPUT_HSE_CLOCK;
+  rcc::cfgr::mco::States const __MCO = rcc::cfgr::mco::OUTPUT_HSE_CLOCK;
 #else // STM32F1XX
   /*****************************************************************************
    * The microcontroller clock output scheme is shown bellow:
@@ -504,11 +507,8 @@ namespace clk {
    *
    *
    ****************************************************************************/
-  rcc::cfgr::mco1::States const __MCO1 = rcc::cfgr::mco1::
-  OUTPUT_HSI_CLOCK;
-
-  rcc::cfgr::mco2::States const __MCO2 = rcc::cfgr::mco2::
-  OUTPUT_HSE_CLOCK;
+  rcc::cfgr::mco1::States const __MCO1 = rcc::cfgr::mco1::OUTPUT_HSI_CLOCK;
+  rcc::cfgr::mco2::States const __MCO2 = rcc::cfgr::mco2::OUTPUT_HSE_CLOCK;
 
   enum {
     __MCO1PRE = 1,
@@ -525,7 +525,6 @@ namespace clk {
 
   /* Select the flash memory access latency ***********************************/
   flash::acr::latency::States const __LATENCY =
-//TODO: fix wait states for particular processors
 #ifdef STM32F1XX
 		  flash::acr::latency::TWO_WAIT_STATES;
 #else

@@ -263,19 +263,13 @@ namespace clk {
  ****************************************************************************/
 enum {
   SYSTEM =
-  __SW ==
-      rcc::cfgr::sw::
-      HSE_OSCILLATOR_SELECTED_AS_SYSTEM_CLOCK ?
+  __SW == rcc::cfgr::sw::HSE_OSCILLATOR_SELECTED_AS_SYSTEM_CLOCK ?
       u32(HSE) :
-      (__SW ==
-          rcc::cfgr::sw::
-          HSI_OSCILLATOR_SELECTED_AS_SYSTEM_CLOCK ?
+      (__SW == rcc::cfgr::sw::HSI_OSCILLATOR_SELECTED_AS_SYSTEM_CLOCK ?
           HSI :
-          (__SW ==
-              rcc::cfgr::sw::
-              PLL_SELECTED_AS_SYSTEM_CLOCK ?
-                                             PLL :
-                                             0))
+          (__SW == rcc::cfgr::sw::PLL_SELECTED_AS_SYSTEM_CLOCK ?
+              PLL :
+              0))
 };
 
 /****************************************************************************
@@ -295,11 +289,10 @@ enum {
   SDIO = AHB
 };
 #ifndef VALUE_LINE
-static_assert(APB1 <= 36000000,
-    "The APB1 clock can't exceed 36 MHz");
-static_assert(ADC <= 14000000,
-    "The ADC clock can't exceed 14 MHz");
+static_assert(APB1 <= 36000000, "The APB1 clock can't exceed 36 MHz");
+static_assert(ADC <= 14000000, "The ADC clock can't exceed 14 MHz");
 #endif // !VALUE_LINE
+
 #else // STM32F1XX
 enum {
   AHB = SYSTEM / cPow<2, __HPRE>::value,
@@ -311,10 +304,8 @@ enum {
   APB2_TIMERS = APB2 * ((__PPRE2 == 0) ? 1 : 2),
 };
 
-static_assert(APB1 <= 42000000,
-    "The APB1 clock can't exceed 42 MHz");
-static_assert(APB2 <= 84000000,
-    "The APB2 clock can't exceed 84 MHz");
+static_assert(APB1 <= 42000000, "The APB1 clock can't exceed 42 MHz");
+static_assert(APB2 <= 84000000, "The APB2 clock can't exceed 84 MHz");
 #endif // STM32F1XX
 /****************************************************************************
  *                                                                          *
@@ -851,8 +842,8 @@ void initialize()
   /* Select system clock ****************************************************/
   RCC::setSystemClockSource(__SW);
 
-//  while (!RCC::isSystemClockSourceStable()) {
-//  }
+  while (!RCC::isSystemClockSourceStable()) {
+  }
 #if defined USING_HSE_CLOCK || \
     defined USING_HSE_CRYSTAL
 } else {
